@@ -1,0 +1,6 @@
+C:/Users/s25380160/Desktop/лабораторная/laba/mp2-lab2-matrix/build/CMakeFiles/gtest.dir
+C:/Users/s25380160/Desktop/лабораторная/laba/mp2-lab2-matrix/build/CMakeFiles/sample_utmatrix.dir
+C:/Users/s25380160/Desktop/лабораторная/laba/mp2-lab2-matrix/build/CMakeFiles/test_utmatrix.dir
+C:/Users/s25380160/Desktop/лабораторная/laba/mp2-lab2-matrix/build/CMakeFiles/RUN_TESTS.dir
+C:/Users/s25380160/Desktop/лабораторная/laba/mp2-lab2-matrix/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/s25380160/Desktop/лабораторная/laba/mp2-lab2-matrix/build/CMakeFiles/ZERO_CHECK.dir

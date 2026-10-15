@@ -20,45 +20,68 @@ template<typename T>
 class TDynamicVector
 {
 protected:
-  size_t sz;
-  T* pMem;
+  size_t size;
+  T* vec;
 public:
-  TDynamicVector(size_t size = 1) : sz(size)
+    TDynamicVector<T> :: TDynamicVector(size_t size = 1) : size(size_)
   {
-    if (sz == 0)
+    if (size == 0)
       throw out_of_range("Vector size should be greater than zero");
-    pMem = new T[sz]();// {}; // У типа T д.б. констуктор по умолчанию
+    vec = new T[size]();// {}; // У типа T д.б. констуктор по умолчанию
   }
-  TDynamicVector(T* arr, size_t s) : sz(s)
+  TDynamicVector<T> :: TDynamicVector(T* arr, size_t s) : size(s)
   {
     assert(arr != nullptr && "TDynamicVector ctor requires non-nullptr arg");
-    pMem = new T[sz];
-    std::copy(arr, arr + sz, pMem);
+    vec = new T[size];
+    std::copy(arr, arr + size, vec);
   }
-  TDynamicVector(const TDynamicVector& v)
+  TDynamicVector<T> :: TDynamicVector(const TDynamicVector& v)
   {
+      size = v.size;
+      vec = new T[size]();
+      for (int i = 0;i < size;i++)
+      {
+          vec[i] = v.vec[i];
+      }
   }
-  TDynamicVector(TDynamicVector&& v) noexcept
+ /* TDynamicVector<T> ::TDynamicVector(TDynamicVector&& v) noexcept
   {
-  }
-  ~TDynamicVector()
+
+
+  }*/
+ TDynamicVector<T> :: ~TDynamicVector()
   {
+     delete[]vec;
   }
   TDynamicVector& operator=(const TDynamicVector& v)
   {
+      if (this == &v)
+      {
+          return *this;
+      }
+      size = v.size;
+      delete[]vec;
+      vec = new T[size];
+      for (int i = 0;i < size;i++)
+      {
+          vec[i] = v.vec[i];
+      }
+      return *this;
   }
-  TDynamicVector& operator=(TDynamicVector&& v) noexcept
-  {
-  }
+  //TDynamicVector& operator=(TDynamicVector&& v) noexcept
+  //{
+  //}
 
   size_t size() const noexcept { return sz; }
 
   // индексация
   T& operator[](size_t ind)
   {
+      return vec[ind];
   }
   const T& operator[](size_t ind) const
   {
+      return vec[ind];
   }
   // индексация с контролем
   T& at(size_t ind)
@@ -71,6 +94,24 @@ public:
   // сравнение
   bool operator==(const TDynamicVector& v) const noexcept
   {
+      if (size != v.size) {
+          return false;
+      }
+      if (*this == v)
+      {
+          return true;
+      }
+      else
+      {
+          for (int i = 0; i < size;++i)
+          {
+              if (vec[i] != v.vec[i])
+              {
+                  return false;
+              }
+          }
+      }
+      return true;
   }
   bool operator!=(const TDynamicVector& v) const noexcept
   {
